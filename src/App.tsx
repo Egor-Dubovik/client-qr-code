@@ -1,11 +1,24 @@
+import { makeStyles } from '@mui/styles';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useRoutes } from 'react-router-dom';
+import AppRouter from 'router/AppRouter';
+import { publicRoutes } from 'router/routes';
+
+const useAppStyles = makeStyles({
+  App: {
+    positon: 'relative',
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'hidden',
+  },
+});
 
 function App() {
-  const a = 6;
+  const routes = useRoutes(AppRouter(publicRoutes));
+  const classes = useAppStyles();
 
-  return <div className="App">react app</div>;
+  return <div className={classes.App}>{routes}</div>;
 }
 
 export default App;
