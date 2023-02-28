@@ -2,8 +2,11 @@ import React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import { pages } from 'constant/navigaton';
+import { NavLink } from 'react-router-dom';
+import useLinkStyles from './style/Link.style';
 
 const BurgerMenu = () => {
+  const classes = useLinkStyles();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -45,8 +48,10 @@ const BurgerMenu = () => {
         }}
       >
         {pages.map((page) => (
-          <MenuItem key={page} onClick={handleCloseNavMenu}>
-            <Typography textAlign="center">{page}</Typography>
+          <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+            <NavLink className={`${classes.Link} ${classes.BurgerLink}`} to={page.route}>
+              {page.name}
+            </NavLink>
           </MenuItem>
         ))}
       </Menu>
