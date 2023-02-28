@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 
 const useMainPageStyles = makeStyles({
   section: {
-    padding: '30px 0',
+    padding: '50px 0',
     '@media (max-width: 480px)': {
       padding: '20px 0',
     },
