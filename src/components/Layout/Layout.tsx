@@ -12,9 +12,7 @@ const Layout: FC = () => {
     <>
       <Header />
       <main className={classes.main}>
-        <Container maxWidth="xl">
-          <Outlet />
-        </Container>
+        <Outlet />
       </main>
       <Footer />
     </>

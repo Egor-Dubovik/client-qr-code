@@ -1,5 +1,5 @@
 import React from 'react';
-import MainPage from 'pages/MainPage';
+import MainPage from 'pages/MainPage/MainPage';
 import Profile from 'pages/Profile';
 import { Navigate } from 'react-router-dom';
 import { ROUTES } from 'constant/navigaton';
