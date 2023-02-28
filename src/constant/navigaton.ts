@@ -1,8 +1,4 @@
-export enum LogoDisplay {
-  flex = 'flex',
-  none = 'none',
-  block = 'block',
-}
+export const pages = ['Главная', 'Возврат', 'Накладные', 'Сканер'];
 
 export enum ROUTES {
   MAIN = '/',

@@ -1,8 +1,7 @@
 import React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material';
-
-const pages = ['Products', 'Pricing', 'Blog'];
+import { pages } from 'constant/navigaton';
 
 const BurgerMenu = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);

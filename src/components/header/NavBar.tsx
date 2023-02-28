@@ -1,7 +1,6 @@
 import { Box, Button } from '@mui/material';
+import { pages } from 'constant/navigaton';
 import React from 'react';
-
-const pages = ['Products', 'Pricing', 'Blog'];
 
 const NavBar = () => {
   return (

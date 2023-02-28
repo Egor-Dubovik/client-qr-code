@@ -1,8 +1,6 @@
 import { Avatar, Box, IconButton, Menu, MenuItem, Tooltip, Typography } from '@mui/material';
 import React from 'react';
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
 const UserMenu = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -37,11 +35,12 @@ const UserMenu = () => {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {settings.map((setting) => (
-          <MenuItem key={setting} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">{setting}</Typography>
-          </MenuItem>
-        ))}
+        <MenuItem onClick={handleCloseUserMenu}>
+          <Typography textAlign="center">Профиль</Typography>
+        </MenuItem>
+        <MenuItem onClick={handleCloseUserMenu}>
+          <Typography textAlign="center">Выйти</Typography>
+        </MenuItem>
       </Menu>
     </Box>
   );

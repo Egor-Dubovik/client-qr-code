@@ -2,7 +2,7 @@ import React from 'react';
 import MainPage from 'pages/MainPage';
 import Profile from 'pages/Profile';
 import { Navigate } from 'react-router-dom';
-import { ROUTES } from 'types/enums';
+import { ROUTES } from 'constant/navigaton';
 
 export const publicRoutes = [
   {
