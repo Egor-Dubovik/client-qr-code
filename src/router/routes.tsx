@@ -2,15 +2,24 @@ import React from 'react';
 import MainPage from 'pages/MainPage/MainPage';
 import Profile from 'pages/Profile';
 import { Navigate } from 'react-router-dom';
-import { ROUTES } from 'constant/navigaton';
 import Returns from 'pages/Returns';
 import Waybills from 'pages/Waybills';
 import Scanner from 'pages/Scanner';
+import { ROUTES } from 'common/constant/navigaton';
+import Auth from 'pages/Auth';
 
 export const publicRoutes = [
   {
     path: ROUTES.MAIN,
     element: <MainPage />,
+  },
+  {
+    path: ROUTES.LOGIN,
+    element: <Auth />,
+  },
+  {
+    path: ROUTES.REGISTRATION,
+    element: <Auth />,
   },
   {
     path: ROUTES.RETURNS,
@@ -38,27 +47,18 @@ export const publicRoutes = [
   },
 ];
 
-//   export const authRoutes = [
-//     {
-//       path: ADMIN_ROUTE,
-//       element: <Admin />,
-//     },
-//     {
-//       path: BASKET_ROUTE + '/:basketId',
-//       element: <Basket />,
-//     },
-//   ];
+// export const authRoutes = [
+//   {
+//     path: ADMIN_ROUTE,
+//     element: <Admin />,
+//   },
+//   {
+//     path: BASKET_ROUTE + '/:basketId',
+//     element: <Basket />,
+//   },
+// ];
 
-//   {
-//     path: LOGIN_ROUTE,
-//     element: <Auth />,
-//   },
-//   {
-//     path: REGISTRATION_ROUTE,
-//     element: <Auth />,
-//   },
-
-//   {
-//     path: PRODUCT_ROUTE + '/:id',
-//     element: <ProductPage />,
-//   },
+// {
+//   path: PRODUCT_ROUTE + '/:id',
+//   element: <ProductPage />,
+// },

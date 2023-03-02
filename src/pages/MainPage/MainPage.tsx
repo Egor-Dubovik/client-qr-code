@@ -4,7 +4,7 @@ import SectionTitle from 'components/UI/SectionTitle';
 import useMainPageStyles from './MainPage.style';
 import FlipIcon from '@mui/icons-material/Flip';
 import { NavLink } from 'react-router-dom';
-import { ROUTES } from 'constant/navigaton';
+import { ROUTES } from 'common/constant/navigaton';
 
 const MainPage: FC = () => {
   const classes = useMainPageStyles();
