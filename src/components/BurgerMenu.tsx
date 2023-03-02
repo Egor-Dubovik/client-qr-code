@@ -1,9 +1,10 @@
 import React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material';
-import { pages } from 'constant/navigaton';
 import { NavLink } from 'react-router-dom';
-import useLinkStyles from './style/Link.style';
+import useLinkStyles from './AppNavLink/AppNavLink.style';
+import { pages } from 'common/constant/navigaton';
+import AppNavLink from './AppNavLink/AppNavLink';
 
 const BurgerMenu = () => {
   const classes = useLinkStyles();
@@ -49,9 +50,7 @@ const BurgerMenu = () => {
       >
         {pages.map((page) => (
           <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-            <NavLink className={`${classes.Link} ${classes.BurgerLink}`} to={page.route}>
-              {page.name}
-            </NavLink>
+            <AppNavLink key={page.name} page={page} place={'BurgerLink'} />
           </MenuItem>
         ))}
       </Menu>

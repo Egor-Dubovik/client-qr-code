@@ -1,9 +1,9 @@
 import React from 'react';
 import { AppBar, Container, Toolbar } from '@mui/material';
-import Logo from '../Logo';
-import BurgerMenu from './BurgerMenu';
-import UserMenu from './UserMenu';
-import NavBar from './NavBar';
+import Logo from '../../components/Logo';
+import BurgerMenu from '../../components/BurgerMenu';
+import UserMenu from '../../components/UserMenu';
+import NavBar from '../../components/NavBar';
 
 const Header = () => {
   return (

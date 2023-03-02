@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from 'components/Layout/Layout';
+import Layout from 'modules/Layout/Layout';
 import { IRoute } from 'types/app.interface';
 import { RouteObject } from 'react-router-dom';
 

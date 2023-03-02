@@ -2,10 +2,10 @@ import React from 'react';
 import MainPage from 'pages/MainPage/MainPage';
 import Profile from 'pages/Profile';
 import { Navigate } from 'react-router-dom';
-import { ROUTES } from 'constant/navigaton';
 import Returns from 'pages/Returns';
 import Waybills from 'pages/Waybills';
 import Scanner from 'pages/Scanner';
+import { ROUTES } from 'common/constant/navigaton';
 
 export const publicRoutes = [
   {

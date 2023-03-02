@@ -1,8 +1,9 @@
-import { Box, Button } from '@mui/material';
-import { pages, ROUTES } from 'constant/navigaton';
 import React from 'react';
+import { Box } from '@mui/material';
+import { pages } from 'common/constant/navigaton';
 import { NavLink } from 'react-router-dom';
-import useLinkStyles from './style/Link.style';
+import useLinkStyles from './AppNavLink/AppNavLink.style';
+import AppNavLink from './AppNavLink/AppNavLink';
 
 const NavBar = () => {
   const classes = useLinkStyles();
@@ -10,9 +11,7 @@ const NavBar = () => {
   return (
     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
       {pages.map((page) => (
-        <NavLink key={page.name} className={`${classes.Link} ${classes.NavLink}`} to={page.route}>
-          {page.name}
-        </NavLink>
+        <AppNavLink key={page.name} page={page} place={'NavLink'} />
       ))}
     </Box>
   );
