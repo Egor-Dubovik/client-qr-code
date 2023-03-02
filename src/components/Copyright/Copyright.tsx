@@ -2,14 +2,14 @@ import { Link, Typography } from '@mui/material';
 import React from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Copyright = (props: any): JSX.Element => {
+const Copyright = (): JSX.Element => {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography variant="body2" noWrap color="text.secondary" align="center">
       {'Copyright © '}
       <Link target="_blank" color="inherit" href="http://www.bsac.by/">
-        Your Website
+        БГАС
       </Link>
-      {new Date().getFullYear()}
+      {` ${new Date().getFullYear()}`}
     </Typography>
   );
 };
