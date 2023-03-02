@@ -1,7 +1,6 @@
-import { Container } from '@mui/material';
 import React, { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-import Footer from '../Footer';
+import Footer from '../Footer/Footer';
 import Header from '../header/Header';
 import useLayoutStyles from './Layout.style';
 
