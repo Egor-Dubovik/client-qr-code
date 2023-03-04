@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { IAppContext } from 'common/interfaces/app.interface';
+import ScanerStore from 'store/ScanerStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+export const Context = createContext<IAppContext | Record<string, never>>({});
+
 root.render(
-  <Router>
-    <App />
-  </Router>
+  <Context.Provider
+    value={{
+      scaner: new ScanerStore(),
+    }}
+  >
+    <Router>
+      <App />
+    </Router>
+  </Context.Provider>
 );
 
 reportWebVitals();

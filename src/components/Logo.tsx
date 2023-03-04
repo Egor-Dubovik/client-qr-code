@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
-import { ILogo } from 'types/logo.inetface';
+import { ILogo } from 'common/interfaces/logo.inetface';
 import { LogoDisplay } from 'common/constant/logo';
 
 const Logo: FC<ILogo> = ({ isDesktop }) => {

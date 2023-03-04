@@ -4,9 +4,9 @@ import Profile from 'pages/Profile';
 import { Navigate } from 'react-router-dom';
 import Returns from 'pages/Returns';
 import Waybills from 'pages/Waybills';
-import Scanner from 'pages/Scanner';
 import { ROUTES } from 'common/constant/navigaton';
 import Auth from 'pages/Auth';
+import Scanner from 'pages/Scaner/Scanner';
 
 export const publicRoutes = [
   {
