@@ -1,10 +1,5 @@
+import { Camera, IScanerData } from 'common/interfaces/scaner.interface';
 import { makeAutoObservable } from 'mobx';
-
-export interface IScanerData {
-  text: string;
-}
-
-type Camera = 'environment' | 'user';
 
 class BasketStore {
   private _data: IScanerData | null;

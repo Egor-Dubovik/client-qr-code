@@ -20,7 +20,6 @@ const MainPage: FC = () => {
                 className={classes.image}
                 src={process.env.PUBLIC_URL + './images/mainPage/hand-qrcodes.png'}
                 alt={'hand-qrcodes'}
-                loading="lazy"
               />
             </Box>
             <Box className={classes.typographyBox}>
