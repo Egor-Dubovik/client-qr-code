@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -13,10 +13,10 @@ import { Display } from 'common/constant/css';
 import { IDisplay } from 'common/interfaces/css.interface';
 import { steps } from 'common/constant/returns';
 
-const getStepContent = (step: number, spinerDisplay: IDisplay) => {
+const getStepContent = (step: number, spinerDisplay: IDisplay, isSubmit: boolean) => {
   switch (step) {
     case 0:
-      return <ReturnsForm />;
+      return <ReturnsForm isSubmit={isSubmit} />;
     case 1:
       return <ReturnsReview spinerDisplay={spinerDisplay} />;
     default:
@@ -25,16 +25,25 @@ const getStepContent = (step: number, spinerDisplay: IDisplay) => {
 };
 
 const ReturnsCheckout: FC = () => {
-  const [activeStep, setActiveStep] = React.useState<number>(0);
-  const [lastStepDisplay, setLastStepDisplay] = React.useState<IDisplay>(Display.none);
+  const [activeStep, setActiveStep] = useState<number>(0);
+  const [lastStepDisplay, setLastStepDisplay] = useState<IDisplay>(Display.none);
+  const [isSubmit, setIsSubmit] = useState<boolean>(false);
 
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
+  const handleNext = (): void => {
+    setIsSubmit(true);
+    setTimeout(() => {
+      setActiveStep(activeStep + 1);
+    }, 5000);
   };
 
-  const handleBack = () => {
+  const handleBack = (): void => {
     setActiveStep(activeStep - 1);
+    setIsSubmit(false);
   };
+
+  // const checkFormFields = (): void => {
+
+  // };
 
   useEffect(() => {
     if (activeStep === steps.length - 1) {
@@ -59,7 +68,7 @@ const ReturnsCheckout: FC = () => {
             ))}
           </Stepper>
           <>
-            {getStepContent(activeStep, lastStepDisplay)}
+            {getStepContent(activeStep, lastStepDisplay, isSubmit)}
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
               {activeStep !== 0 && (
                 <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>

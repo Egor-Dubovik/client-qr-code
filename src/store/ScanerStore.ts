@@ -1,7 +1,7 @@
 import { Camera, IScanerData } from 'common/interfaces/scaner.interface';
 import { makeAutoObservable } from 'mobx';
 
-class BasketStore {
+class ScanerStore {
   private _data: IScanerData | null;
   private _loadingScan: boolean;
   private _isScan: boolean;
@@ -58,4 +58,4 @@ class BasketStore {
   }
 }
 
-export default BasketStore;
+export default ScanerStore;

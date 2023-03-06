@@ -40,7 +40,11 @@ const UserMenu = () => {
         onClose={handleCloseUserMenu}
       >
         <MenuItem onClick={handleCloseUserMenu}>
-          <Typography textAlign="center">Профиль</Typography>
+          <Typography textAlign="center">
+            <NavLink className={classes.MenuLink} to={ROUTES.PROFILE}>
+              Профиль
+            </NavLink>
+          </Typography>
         </MenuItem>
         <MenuItem onClick={handleCloseUserMenu}>
           <NavLink className={classes.MenuLink} to={ROUTES.MAIN}>

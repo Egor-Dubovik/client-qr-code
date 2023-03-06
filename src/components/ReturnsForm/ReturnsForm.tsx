@@ -1,24 +1,35 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, FC, useContext, useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { Context } from 'index';
+import InputFile from 'components/InputFile';
+import { observer } from 'mobx-react-lite';
 
-const ReturnsForm = () => {
+interface IReturnsForm {
+  isSubmit: boolean;
+}
+
+const ReturnsForm: FC<IReturnsForm> = observer(({ isSubmit }) => {
   const [fullName, setFullName] = useState<string>('');
   const [country, setCountry] = useState<string>('');
   const [agreement, setAgreement] = useState<boolean>(true);
-  const [city, setCity] = React.useState<string>('');
-  const [zip, setZip] = React.useState<string>('');
-  const [adress, setAdress] = React.useState<string>('');
+  const [city, setCity] = useState<string>('');
+  const [zip, setZip] = useState<string>('');
+  const [adress, setAdress] = useState<string>('');
+  const [imagePath, setImagePath] = useState<string>('');
+  const [reasonReturn, setReasonReturn] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string[] | []>([]);
+
+  const { userReturn } = useContext(Context);
 
   const checkFullName = (event: ChangeEvent<HTMLInputElement>): void => {
     const stringName = event.target.value;
     if (stringName.split(' ').length >= 3) {
-      setCountry(event.target.value);
+      setFullName(event.target.value);
     } else {
       setErrorMessage([...errorMessage, 'Некорректно введено ФИО']);
     }
@@ -32,16 +43,31 @@ const ReturnsForm = () => {
     setCountry(event.target.value);
   };
 
+  useEffect(() => {
+    if (isSubmit) {
+      userReturn.setReturn({
+        user_name: fullName,
+        country,
+        address: `${city}, ${adress}`,
+        reason: reasonReturn,
+        postal_code: zip,
+        image: imagePath,
+      });
+      console.log(' sb');
+    }
+  }, [isSubmit]);
+
   return (
-    <React.Fragment>
+    <>
+      <div id="a"></div>
       <Typography variant="h6" gutterBottom>
         Введите данные
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
+            onChange={(event) => setFullName(event.target.value)}
             value={fullName}
-            onChange={checkFullName}
             required
             label="ФИО"
             fullWidth
@@ -92,14 +118,27 @@ const ReturnsForm = () => {
           />
         </Grid>
         <Grid item xs={12}>
+          <TextField
+            onChange={(event) => setReasonReturn(event.target.value)}
+            value={reasonReturn}
+            required
+            label="Причина возврата"
+            fullWidth
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <InputFile filePath={imagePath} setFile={setImagePath} />
+        </Grid>
+        <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" onChange={handleAgreement} checked={agreement} />}
             label="Соглашаюсь с обработкой данных"
           />
         </Grid>
       </Grid>
-    </React.Fragment>
+    </>
   );
-};
+});
 
 export default ReturnsForm;
