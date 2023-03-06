@@ -13,11 +13,11 @@ const ReturnsReview: FC<IReturnsReview> = ({ spinerDisplay }) => {
   return (
     <>
       <Typography variant="h5" gutterBottom>
-        Ваш QR-код сгенерирован
+        Данные о возврате успешно сохранены
       </Typography>
-      <Typography variant="subtitle1" sx={{ mb: 4 }}>
-        Вы можете посмотреть и распечатать его в личном{' '}
-        {<NavLink to={ROUTES.PROFILE}>профиле</NavLink>}
+      <Typography variant="subtitle1" sx={{ mb: 4, lineHeight: 1.6 }}>
+        Вы можете проверить их в личном {<NavLink to={ROUTES.PROFILE}>профиле</NavLink>}, там же
+        можно сгенерировать QR-код и распечатать его
       </Typography>
       <SuccessSpiner display={spinerDisplay} />
     </>

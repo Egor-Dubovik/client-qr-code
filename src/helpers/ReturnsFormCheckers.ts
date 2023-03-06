@@ -15,11 +15,11 @@ export const checkReturnForm = (params: IcheckReturnFormParams): string[] => {
 
   if (name.split(' ').length < 3) errorMessage.push('*Введите ФИО через пробелы');
   if (country === '') errorMessage.push('*Не указана страна');
-  if (!agreement) errorMessage.push('*Вам нужно принять соглащщение');
+  if (!agreement) errorMessage.push('*Примите соглашение');
   if (city === '') errorMessage.push('*Введите город');
   if (zip === '') errorMessage.push('*Введите почтовый код');
   if (adress === '') errorMessage.push('*Введите адресс');
-  if (imagePath === '') errorMessage.push('*Необходимо приложить фото');
+  if (imagePath === '') errorMessage.push('*Необходимо приложить фото возвращаемой продукции');
   if (reasonReturn === '') errorMessage.push('*Укажите причину возврата');
   return errorMessage;
 };
