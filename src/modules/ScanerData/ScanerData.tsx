@@ -5,7 +5,7 @@ import { Box, Button } from '@mui/material';
 import CameraSelect from 'components/CameraSelect/CameraSelect';
 import useScanerDataStyles from './ScanerData.style';
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
-import { getBlockProperty } from 'utils/css';
+import { getBlockProperty } from 'helpers/css';
 
 const ScanerData = observer(() => {
   const { scaner } = useContext(Context);
