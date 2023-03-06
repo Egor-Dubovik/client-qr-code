@@ -4,10 +4,11 @@ import AddIcon from '@mui/icons-material/Add';
 
 interface IInputFile {
   filePath: string;
+  fileName: string;
   setFile: Dispatch<React.SetStateAction<string>>;
 }
 
-const InputFile: FC<IInputFile> = ({ filePath, setFile }) => {
+const InputFile: FC<IInputFile> = ({ filePath, fileName, setFile }) => {
   const getFileName = () => filePath.split('\\').pop();
 
   return (
@@ -21,7 +22,7 @@ const InputFile: FC<IInputFile> = ({ filePath, setFile }) => {
           type="file"
         />
         <Fab color="secondary" size="medium" component="span" variant="extended">
-          <AddIcon /> Upload photo
+          <AddIcon /> {fileName}
         </Fab>
       </label>
       <Box>{getFileName()}</Box>

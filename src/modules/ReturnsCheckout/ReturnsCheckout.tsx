@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -12,11 +12,13 @@ import ReturnsReview from 'components/ReturnsReview/ReturnsReview';
 import { Display } from 'common/constant/css';
 import { IDisplay } from 'common/interfaces/css.interface';
 import { steps } from 'common/constant/returns';
+import { observer } from 'mobx-react-lite';
+import { Context } from 'index';
 
-const getStepContent = (step: number, spinerDisplay: IDisplay, isSubmit: boolean) => {
+const getStepContent = (step: number, spinerDisplay: IDisplay) => {
   switch (step) {
     case 0:
-      return <ReturnsForm isSubmit={isSubmit} />;
+      return <ReturnsForm />;
     case 1:
       return <ReturnsReview spinerDisplay={spinerDisplay} />;
     default:
@@ -24,26 +26,24 @@ const getStepContent = (step: number, spinerDisplay: IDisplay, isSubmit: boolean
   }
 };
 
-const ReturnsCheckout: FC = () => {
+const ReturnsCheckout: FC = observer(() => {
   const [activeStep, setActiveStep] = useState<number>(0);
   const [lastStepDisplay, setLastStepDisplay] = useState<IDisplay>(Display.none);
-  const [isSubmit, setIsSubmit] = useState<boolean>(false);
+  const { userReturn } = useContext(Context);
 
   const handleNext = (): void => {
-    setIsSubmit(true);
-    setTimeout(() => {
-      setActiveStep(activeStep + 1);
-    }, 2000);
+    userReturn.setFormErrors([]);
+    userReturn.setFormSubmit(true);
   };
 
   const handleBack = (): void => {
     setActiveStep(activeStep - 1);
-    setIsSubmit(false);
+    userReturn.setFormSubmit(false);
   };
 
-  // const checkFormFields = (): void => {
-
-  // };
+  useEffect(() => {
+    if (userReturn.formValidate) setActiveStep(activeStep + 1);
+  }, [userReturn.formValidate]);
 
   useEffect(() => {
     if (activeStep === steps.length - 1) {
@@ -68,7 +68,7 @@ const ReturnsCheckout: FC = () => {
             ))}
           </Stepper>
           <>
-            {getStepContent(activeStep, lastStepDisplay, isSubmit)}
+            {getStepContent(activeStep, lastStepDisplay)}
             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
               {activeStep !== 0 && (
                 <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
@@ -89,6 +89,6 @@ const ReturnsCheckout: FC = () => {
       </Container>
     </>
   );
-};
+});
 
 export default ReturnsCheckout;
