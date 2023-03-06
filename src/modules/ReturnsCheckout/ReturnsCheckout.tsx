@@ -33,7 +33,7 @@ const ReturnsCheckout: FC = () => {
     setIsSubmit(true);
     setTimeout(() => {
       setActiveStep(activeStep + 1);
-    }, 5000);
+    }, 2000);
   };
 
   const handleBack = (): void => {

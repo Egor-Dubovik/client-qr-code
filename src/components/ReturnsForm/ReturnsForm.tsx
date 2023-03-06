@@ -35,6 +35,14 @@ const ReturnsForm: FC<IReturnsForm> = observer(({ isSubmit }) => {
     }
   };
 
+  const checkCountry = () => {
+    if (country === '') setErrorMessage([...errorMessage, 'Не указана страна']);
+  };
+
+  const checkAgreement = () => {
+    if (!agreement) setErrorMessage([...errorMessage, 'Вам нужно принять соглащщение']);
+  };
+
   const handleAgreement = (event: ChangeEvent<HTMLInputElement>): void => {
     setAgreement(event.target.checked);
   };
@@ -53,7 +61,6 @@ const ReturnsForm: FC<IReturnsForm> = observer(({ isSubmit }) => {
         postal_code: zip,
         image: imagePath,
       });
-      console.log(' sb');
     }
   }, [isSubmit]);
 
