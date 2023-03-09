@@ -1,12 +1,17 @@
 import { Avatar, Box, IconButton, Menu, MenuItem, Tooltip, Typography } from '@mui/material';
 import { ROUTES } from 'common/constant/navigaton';
-import React from 'react';
+import useLogout from 'hooks/auth/useLogout';
+import { Context } from 'index';
+import { observer } from 'mobx-react-lite';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import useUserMenuStyles from './UserMenu.style';
 
-const UserMenu = () => {
+const UserMenu = observer(() => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const classes = useUserMenuStyles();
+  const { user } = useContext(Context);
+  const { logout } = useLogout();
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -39,26 +44,31 @@ const UserMenu = () => {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        <MenuItem onClick={handleCloseUserMenu}>
-          <Typography textAlign="center">
+        {user.isAuth ? (
+          <MenuItem className={classes.MenuItem} onClick={handleCloseUserMenu}>
             <NavLink className={classes.MenuLink} to={ROUTES.PROFILE}>
               Профиль
             </NavLink>
-          </Typography>
-        </MenuItem>
-        <MenuItem onClick={handleCloseUserMenu}>
-          <NavLink className={classes.MenuLink} to={ROUTES.MAIN}>
-            Выйти
-          </NavLink>
-        </MenuItem>
-        <MenuItem onClick={handleCloseUserMenu}>
-          <NavLink className={classes.MenuLink} to={ROUTES.LOGIN}>
-            Авторизация
-          </NavLink>
-        </MenuItem>
+            <NavLink
+              className={classes.MenuLink}
+              to={ROUTES.MAIN}
+              onClick={() => {
+                logout();
+              }}
+            >
+              Выйти
+            </NavLink>
+          </MenuItem>
+        ) : (
+          <MenuItem onClick={handleCloseUserMenu}>
+            <NavLink className={classes.MenuLink} to={ROUTES.LOGIN}>
+              Авторизация
+            </NavLink>
+          </MenuItem>
+        )}
       </Menu>
     </Box>
   );
-};
+});
 
 export default UserMenu;
