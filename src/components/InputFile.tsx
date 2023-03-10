@@ -9,10 +9,9 @@ interface IInputFile {
 }
 
 const InputFile: FC<IInputFile> = ({ file, inputName, setFile }) => {
-  console.log(file);
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-      <Button variant="contained" startIcon={<AddIcon />} color={'secondary'}>
+      <Button variant="contained" startIcon={<AddIcon />} color={'secondary'} component="label">
         {inputName}
         <input hidden type={'file'} onChange={(event) => setFile(event)} />
       </Button>
