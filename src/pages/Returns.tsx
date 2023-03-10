@@ -1,7 +1,12 @@
 import React from 'react';
+import ReturnsCheckout from 'modules/ReturnsCheckout/ReturnsCheckout';
 
 const Returns = () => {
-  return <>Returns</>;
+  return (
+    <>
+      <ReturnsCheckout />
+    </>
+  );
 };
 
 export default Returns;

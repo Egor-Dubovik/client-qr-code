@@ -4,7 +4,7 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { Button } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { Context } from 'index';
-import { getBlockProperty } from 'utils/css';
+import { getBlockProperty } from 'helpers/css';
 
 const ScanerButtons: FC = observer(() => {
   const { scaner } = useContext(Context);

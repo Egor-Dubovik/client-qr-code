@@ -22,20 +22,8 @@ export const publicRoutes = [
     element: <Auth />,
   },
   {
-    path: ROUTES.RETURNS,
-    element: <Returns />,
-  },
-  {
-    path: ROUTES.WAYBILLS,
-    element: <Waybills />,
-  },
-  {
     path: ROUTES.SCANNER,
     element: <Scanner />,
-  },
-  {
-    path: ROUTES.PROFILE,
-    element: <Profile />,
   },
   {
     path: ROUTES.NOT_FOUND,
@@ -47,16 +35,20 @@ export const publicRoutes = [
   },
 ];
 
-// export const authRoutes = [
-//   {
-//     path: ADMIN_ROUTE,
-//     element: <Admin />,
-//   },
-//   {
-//     path: BASKET_ROUTE + '/:basketId',
-//     element: <Basket />,
-//   },
-// ];
+export const privateRoutes = [
+  {
+    path: ROUTES.PROFILE,
+    element: <Profile />,
+  },
+  {
+    path: ROUTES.RETURNS,
+    element: <Returns />,
+  },
+  // {
+  //   path: ROUTES.WAYBILLS,
+  //   element: <Waybills />,
+  // },
+];
 
 // {
 //   path: PRODUCT_ROUTE + '/:id',

@@ -2,20 +2,20 @@ import React, { FC, useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import { ILogo } from 'common/interfaces/logo.inetface';
-import { LogoDisplay } from 'common/constant/logo';
+import { Display } from 'common/constant/css';
 
 const Logo: FC<ILogo> = ({ isDesktop }) => {
-  const [currentXs, setXs] = useState<LogoDisplay>(LogoDisplay.none);
-  const [currentMd, setMd] = useState<LogoDisplay>(LogoDisplay.flex);
+  const [currentXs, setXs] = useState<Display>(Display.none);
+  const [currentMd, setMd] = useState<Display>(Display.flex);
 
   const changeLogoDisplay = (isDesplay: boolean): void => {
     if (isDesplay) {
-      setXs(LogoDisplay.none);
-      setMd(LogoDisplay.flex);
+      setXs(Display.none);
+      setMd(Display.flex);
       return;
     }
-    setXs(LogoDisplay.flex);
-    setMd(LogoDisplay.none);
+    setXs(Display.flex);
+    setMd(Display.none);
   };
 
   useEffect(() => {
