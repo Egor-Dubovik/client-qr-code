@@ -1,5 +1,5 @@
-export const BASE_URL = 'http://localhost:5000';
-export const API_URL = `${BASE_URL}/qr`;
+export const BASE_URL = 'http://localhost:5000/';
+export const API_URL = `${BASE_URL}qr`;
 
 export const API = {
   users: '/user',

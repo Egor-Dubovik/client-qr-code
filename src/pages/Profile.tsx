@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ProfileList from 'modules/ProfileList/ProfileList';
 import Container from '@mui/material/Container';
-import ProfileReturnInfo from 'components/ProfileReturnInfo';
+import ProfileReturnInfo from 'components/ProfileReturnInfo/ProfileReturnInfo';
 import { Grid } from '@mui/material';
 import ProfileUserInfo from 'components/ProfileUserInfo';
+import { Context } from 'index';
+import { observer } from 'mobx-react-lite';
 
-const Profile = () => {
+const Profile = observer(() => {
+  const { profile } = useContext(Context);
+
   return (
     <Container maxWidth="xl">
       <Grid container xs={12} sm={12} pt={3}>
@@ -13,12 +17,11 @@ const Profile = () => {
           <ProfileList />
         </Grid>
         <Grid item xs={12} sm={8}>
-          <ProfileReturnInfo />
-          {/* <ProfileUserInfo /> */}
+          {profile.isOpen ? <ProfileUserInfo /> : <ProfileReturnInfo />}
         </Grid>
       </Grid>
     </Container>
   );
-};
+});
 
 export default Profile;

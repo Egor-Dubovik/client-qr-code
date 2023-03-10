@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Person2Icon from '@mui/icons-material/Person2';
-import { ROUTES } from 'common/constant/navigaton';
-import { NavLink } from 'react-router-dom';
 import ReturnsDeopDown from 'components/ReturnsDeopDown';
+import { Context } from 'index';
 
-const ProfileList = () => {
+const ProfileList = (): JSX.Element => {
+  const { profile } = useContext(Context);
+
+  const openProfile = (): void => {
+    profile.setIsOpen(true);
+  };
+
   return (
     <List
       sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
@@ -21,14 +26,12 @@ const ProfileList = () => {
         </ListSubheader>
       }
     >
-      <NavLink to={ROUTES.PROFILE}>
-        <ListItemButton>
-          <ListItemIcon>
-            <Person2Icon />
-          </ListItemIcon>
-          <ListItemText primary="Профиль" />
-        </ListItemButton>
-      </NavLink>
+      <ListItemButton onClick={openProfile}>
+        <ListItemIcon>
+          <Person2Icon />
+        </ListItemIcon>
+        <ListItemText primary="Профиль" />
+      </ListItemButton>
 
       <ReturnsDeopDown />
     </List>
