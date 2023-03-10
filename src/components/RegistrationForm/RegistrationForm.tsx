@@ -44,7 +44,6 @@ const RegistrationForm = () => {
 
   return (
     <>
-      {isSuccess && navigate(ROUTES.PROFILE)}
       {isLoading ? (
         <Spiner className={'Spiner'} />
       ) : (

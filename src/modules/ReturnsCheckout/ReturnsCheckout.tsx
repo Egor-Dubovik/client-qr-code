@@ -39,6 +39,7 @@ const ReturnsCheckout: FC = observer(() => {
   const handleBack = (): void => {
     setActiveStep(activeStep - 1);
     userReturn.setFormSubmit(false);
+    userReturn.setFormValidate(false);
   };
 
   useEffect(() => {

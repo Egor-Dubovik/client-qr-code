@@ -1,3 +1,4 @@
+import { IAxiosError } from 'common/interfaces/axios';
 import { Return } from 'common/models/Return';
 import { makeAutoObservable } from 'mobx';
 
@@ -5,14 +6,22 @@ class ReturnsStore {
   private _allReturns: Return[];
   private _isFormValidate: boolean;
   private _isFormSubmit: boolean;
-  private _errors: string[];
+  private _isSuccess: boolean;
+  private _formErrors: string[];
+  private _serverError: IAxiosError<{ message: string }> | null;
 
   constructor() {
     this._allReturns = [] as Return[];
     this._isFormValidate = false;
     this._isFormSubmit = false;
-    this._errors = [] as string[];
+    this._isSuccess = false;
+    this._formErrors = [] as string[];
+    this._serverError = null;
     makeAutoObservable(this);
+  }
+
+  setServerError(error: IAxiosError<{ message: string }>): void {
+    this._serverError = error;
   }
 
   setReturn(userReturn: Return): void {
@@ -28,7 +37,19 @@ class ReturnsStore {
   }
 
   setFormErrors(errors: string[]): void {
-    this._errors = errors;
+    this._formErrors = errors;
+  }
+
+  setSuccess(value: boolean): void {
+    this._isSuccess = value;
+  }
+
+  get serverError(): IAxiosError<{ message: string }> | null {
+    return this._serverError;
+  }
+
+  get success(): boolean {
+    return this._isSuccess;
   }
 
   get allReturns(): Return[] {
@@ -44,7 +65,7 @@ class ReturnsStore {
   }
 
   get formErrors(): string[] {
-    return this._errors;
+    return this._formErrors;
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, FormEvent, useContext, useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -9,6 +9,7 @@ import { Context } from 'index';
 import InputFile from 'components/InputFile';
 import { observer } from 'mobx-react-lite';
 import { checkReturnForm } from 'helpers/ReturnsFormCheckers';
+import useCreateReturn from 'hooks/returns/useCreateReturn';
 
 const ReturnsForm: FC = observer(() => {
   const [fullName, setFullName] = useState<string>('');
@@ -17,10 +18,19 @@ const ReturnsForm: FC = observer(() => {
   const [city, setCity] = useState<string>('');
   const [zip, setZip] = useState<string>('');
   const [adress, setAdress] = useState<string>('');
-  const [imagePath, setImagePath] = useState<string>('');
+  const [image, setImage] = useState<File | null>(null);
   const [reasonReturn, setReasonReturn] = useState<string>('');
 
   const { userReturn } = useContext(Context);
+  const { createReturn } = useCreateReturn();
+
+  const selectImage = (event: FormEvent): void => {
+    const files = (event.target as HTMLInputElement).files;
+    if (files) {
+      const chosenFile = files[0];
+      setImage(chosenFile);
+    }
+  };
 
   useEffect(() => {
     if (userReturn.isFormSubmit) {
@@ -31,11 +41,9 @@ const ReturnsForm: FC = observer(() => {
         city,
         zip,
         adress,
-        imagePath,
+        image,
         reasonReturn,
       });
-
-      console.log(formErrors);
 
       if (formErrors.length !== 0) {
         userReturn.setFormErrors(formErrors);
@@ -44,15 +52,15 @@ const ReturnsForm: FC = observer(() => {
         return;
       }
 
+      const formData = new FormData();
+      formData.append('userName', fullName);
+      formData.append('country', country);
+      formData.append('address', `${city}, ${adress}`);
+      formData.append('reason', reasonReturn);
+      formData.append('postalCode', zip);
+      formData.append('image', image as unknown as string);
+      createReturn(formData);
       userReturn.setFormValidate(true);
-      userReturn.setReturn({
-        user_name: fullName,
-        country,
-        address: `${city}, ${adress}`,
-        reason: reasonReturn,
-        postal_code: zip,
-        image: imagePath,
-      });
     }
   }, [userReturn.isFormSubmit]);
 
@@ -139,7 +147,7 @@ const ReturnsForm: FC = observer(() => {
             />
           </Grid>
           <Grid item xs={12}>
-            <InputFile filePath={imagePath} fileName={'фото'} setFile={setImagePath} />
+            <InputFile file={image} setFile={selectImage} inputName={'фото'} />
           </Grid>
           <Grid item xs={12}>
             <FormControlLabel
