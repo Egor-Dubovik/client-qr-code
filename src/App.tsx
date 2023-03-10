@@ -8,6 +8,7 @@ import { publicRoutes } from 'router/routes';
 // import { checkAuth } from 'services/UserService';
 import useAppStyles from 'styles/app.styles';
 import Spiner from 'components/Spiner/Spiner';
+import { getRoutes } from 'helpers/routes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,9 +19,9 @@ const queryClient = new QueryClient({
 });
 
 const App = observer(() => {
-  const routes = useRoutes(AppRouter(publicRoutes));
-  const classes = useAppStyles();
   const { user } = useContext(Context);
+  const routes = useRoutes(AppRouter(getRoutes(user.isAuth)));
+  const classes = useAppStyles();
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -30,7 +31,7 @@ const App = observer(() => {
 
   if (user.isLoading) {
     return (
-      <div>
+      <div className={classes.SpinerBox}>
         <Spiner className="Spiner" />
       </div>
     );

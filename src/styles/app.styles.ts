@@ -9,6 +9,12 @@ const useAppStyles = makeStyles({
     overflow: 'hidden',
     color: '#294270',
   },
+  SpinerBox: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(50%,50%)',
+  },
 });
 
 export default useAppStyles;

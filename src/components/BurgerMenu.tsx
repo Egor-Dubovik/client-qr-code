@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from 'index';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material';
-import { NavLink } from 'react-router-dom';
-import useLinkStyles from './AppNavLink/AppNavLink.style';
+import { Box, IconButton, Menu, MenuItem } from '@mui/material';
 import { pages } from 'common/constant/navigaton';
 import AppNavLink from './AppNavLink/AppNavLink';
 
 const BurgerMenu = () => {
-  const classes = useLinkStyles();
+  const { user } = useContext(Context);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -48,11 +47,17 @@ const BurgerMenu = () => {
           display: { xs: 'block', md: 'none' },
         }}
       >
-        {pages.map((page) => (
-          <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-            <AppNavLink key={page.name} page={page} place={'BurgerLink'} />
+        <MenuItem onClick={handleCloseNavMenu}>
+          <AppNavLink page={pages.main} place={'BurgerLink'} />
+        </MenuItem>
+        <MenuItem onClick={handleCloseNavMenu}>
+          <AppNavLink page={pages.scaner} place={'BurgerLink'} />
+        </MenuItem>
+        {user.isAuth && (
+          <MenuItem onClick={handleCloseNavMenu}>
+            <AppNavLink page={pages.return} place={'BurgerLink'} />
           </MenuItem>
-        ))}
+        )}
       </Menu>
     </Box>
   );
