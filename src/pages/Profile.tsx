@@ -12,7 +12,7 @@ const Profile = observer(() => {
 
   return (
     <Container maxWidth="xl">
-      <Grid container xs={12} sm={12} pt={3}>
+      <Grid container item xs={12} sm={12} pt={3}>
         <Grid item xs={12} sm={4}>
           <ProfileList />
         </Grid>

@@ -12,7 +12,6 @@ const useReturns = () => {
   } = useQuery(['returns list'], {
     queryFn: () => ReturnService.getAll(user.user.id),
   });
-  console.log(userReturns);
   return { userReturns, isLoading, error };
 };
 

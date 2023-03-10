@@ -3,8 +3,9 @@ import { Context } from 'index';
 import { Box, Typography } from '@mui/material';
 import { BASE_URL } from 'common/constant/api';
 import useProfileReturnStyles from './ProfileReturnInfo.style';
+import { observer } from 'mobx-react-lite';
 
-const ProfileReturnInfo: FC = () => {
+const ProfileReturnInfo: FC = observer(() => {
   const { userReturn } = useContext(Context);
   const { BoxInfo, span } = useProfileReturnStyles();
 
@@ -56,6 +57,6 @@ const ProfileReturnInfo: FC = () => {
       </Box>
     </Box>
   );
-};
+});
 
 export default ProfileReturnInfo;

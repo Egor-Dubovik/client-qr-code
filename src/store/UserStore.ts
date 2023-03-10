@@ -47,7 +47,6 @@ class UserStore {
       const response = await axios.get<IAuthResponse>(`${API_URL}${API.refresh}`, {
         withCredentials: true, // куки автоматически
       });
-      console.log(response);
       localStorage.setItem('token', response.data.accessToken);
       this.setIsAuth(true);
       this.setUser(response.data.user);

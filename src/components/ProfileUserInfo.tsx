@@ -4,11 +4,15 @@ import React, { useContext } from 'react';
 
 const ProfileUserInfo = (): JSX.Element => {
   const { user } = useContext(Context);
-  console.log(user.user.name);
+
   return (
     <Box>
-      <Typography>{user.user.name}</Typography>
-      <Typography>{user.user.email}</Typography>
+      <Typography variant="h6">
+        ФИО: <span>{user.user.name}</span>
+      </Typography>
+      <Typography variant="h6">
+        Email: <span>{user.user.email}</span>
+      </Typography>
     </Box>
   );
 };
