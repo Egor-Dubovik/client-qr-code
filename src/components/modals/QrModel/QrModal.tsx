@@ -1,10 +1,11 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, useContext, useRef } from 'react';
 import { API_URL } from 'common/constant/api';
 import { QRCodeSVG } from 'qrcode.react';
-import { Backdrop, Box, Fade, Modal } from '@mui/material';
+import { Backdrop, Button, Fade, Modal } from '@mui/material';
 import { Context } from 'index';
 import { observer } from 'mobx-react-lite';
 import useQrModalStyles from './QrModal.style';
+import { useReactToPrint } from 'react-to-print';
 
 interface IQrModel {
   id: number;
@@ -12,7 +13,13 @@ interface IQrModel {
 
 const QrModel: FC<IQrModel> = observer(({ id }) => {
   const { modal } = useContext(Context);
-  const { content, qrCode } = useQrModalStyles();
+  const { content, qrCode, PrintButton } = useQrModalStyles();
+  const componentRef = useRef(null);
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    pageStyle: 'padding: 15px',
+  });
 
   const handleClose = () => {
     if (modal.isOpen) modal.setIsOpen(false);
@@ -35,7 +42,14 @@ const QrModel: FC<IQrModel> = observer(({ id }) => {
       >
         <Fade in={modal.isOpen}>
           <div className={content}>
-            <QRCodeSVG className={qrCode} value={`${API_URL}/pdf?id=${id}`} />
+            <div ref={componentRef}>
+              <QRCodeSVG className={qrCode} value={`${API_URL}/pdf?id=${id}`} />
+            </div>
+
+            <Button className={PrintButton} variant="contained" onClick={handlePrint}>
+              распечатать QR-код
+            </Button>
+            <div></div>
           </div>
         </Fade>
       </Modal>

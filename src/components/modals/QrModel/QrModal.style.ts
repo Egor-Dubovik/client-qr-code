@@ -8,7 +8,6 @@ const useQrModalStyles = makeStyles({
     width: '300px',
     height: '300px',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: '#262626',
   },
   qrCode: {
     position: 'absolute',
@@ -16,6 +15,12 @@ const useQrModalStyles = makeStyles({
     left: 0,
     width: '100%',
     height: '100%',
+  },
+  PrintButton: {
+    position: 'absolute',
+    bottom: '-115%',
+    left: '50%',
+    transform: 'translate(-50%, 0)',
   },
 });
 
