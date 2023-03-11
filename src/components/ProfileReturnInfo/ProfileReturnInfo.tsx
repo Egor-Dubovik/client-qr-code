@@ -59,8 +59,8 @@ const ProfileReturnInfo: FC = observer(() => {
               sx={{
                 height: 500,
                 width: 350,
-                maxHeight: { xs: 300, md: 500 },
-                maxWidth: { xs: 250, md: 350 },
+                maxHeight: { xs: 400, sm: 500 },
+                maxWidth: { xs: 290, sm: 350 },
               }}
               alt="returns product"
               src={BASE_URL + userReturn.currentReturn.image}

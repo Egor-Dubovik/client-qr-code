@@ -23,7 +23,7 @@ const ReturnsDeopDown: FC = observer(() => {
 
   return (
     <>
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton sx={{ bgcolor: '#f7f7f7' }} onClick={handleClick}>
         <ListItemIcon>
           <InboxIcon />
         </ListItemIcon>

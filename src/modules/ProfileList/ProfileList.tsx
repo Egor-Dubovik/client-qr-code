@@ -17,7 +17,7 @@ const ProfileList = (): JSX.Element => {
 
   return (
     <List
-      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+      sx={{ width: '100%', bgcolor: 'background.paper' }}
       component="nav"
       aria-labelledby="nested-list-subheader"
       subheader={
@@ -26,7 +26,7 @@ const ProfileList = (): JSX.Element => {
         </ListSubheader>
       }
     >
-      <ListItemButton onClick={openProfile}>
+      <ListItemButton sx={{ bgcolor: '#f7f7f7' }} onClick={openProfile}>
         <ListItemIcon>
           <Person2Icon />
         </ListItemIcon>
