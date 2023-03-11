@@ -1,3 +1,4 @@
+import ModalStore from 'store/ModalStore';
 import ProfileStore from 'store/ProfileStore';
 import ReturnsStore from 'store/ReturnsStore';
 import ScanerStore from 'store/ScanerStore';
@@ -8,6 +9,7 @@ export interface IAppContext {
   scaner: ScanerStore;
   userReturn: ReturnsStore;
   profile: ProfileStore;
+  modal: ModalStore;
 }
 
 export interface IRoute {
