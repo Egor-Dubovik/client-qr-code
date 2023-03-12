@@ -5,7 +5,6 @@ import ReturnService from 'services/ReturnService';
 
 const useReturns = () => {
   const { user } = useContext(Context);
-  console.log('useReturns');
   const {
     data: userReturns,
     isLoading,
