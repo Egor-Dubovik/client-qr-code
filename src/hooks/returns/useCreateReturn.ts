@@ -7,7 +7,8 @@ import ReturnService from 'services/ReturnService';
 const useCreateReturn = () => {
   const { userReturn } = useContext(Context);
 
-  const { mutate, isLoading, isSuccess, error } = useMutation(['return'], {
+  const { mutate, isLoading, isSuccess, error } = useMutation({
+    mutationKey: ['return'],
     mutationFn: (data: FormData) => ReturnService.create(data),
     onSuccess: () => {
       userReturn.setSuccess(true);
