@@ -24,6 +24,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
+    "gh-pages": "^5.0.0",
     "husky": "^7.0.4",
     "jwt-decode": "^3.1.2",
     "lint-staged": "^12.4.1",
@@ -40,7 +41,10 @@
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
+  "homepage": "https://Egor-Dubovik.github.io/client-qr-code",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "fix": "eslint ./src --fix --color",
