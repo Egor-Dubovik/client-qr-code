@@ -21,7 +21,7 @@ const ReturnsForm: FC = observer(() => {
   const [image, setImage] = useState<File | null>(null);
   const [reasonReturn, setReasonReturn] = useState<string>('');
 
-  const { userReturn } = useContext(Context);
+  const { user, userReturn } = useContext(Context);
   const { createReturn } = useCreateReturn();
 
   const selectImage = (event: FormEvent): void => {
@@ -59,6 +59,7 @@ const ReturnsForm: FC = observer(() => {
       formData.append('reason', reasonReturn);
       formData.append('postalCode', zip);
       formData.append('image', image as unknown as string);
+      formData.append('userId', user.user.id.toString());
       createReturn(formData);
       userReturn.setFormValidate(true);
     }
